@@ -71,7 +71,7 @@ const categories = [
   },
 
   {
-    label: "Shared with me",
+    label: "Trash",
     href: "/shared",
     icon: Trash2,
   },
@@ -93,36 +93,36 @@ const bottomRoutes = [
 export const SidebarRoutes = () => {
   const [activeRoute, SetActiveRoute] = useState("Home");
   return (
-    <div className="w-56 bg-muted/30  border-gray-500 flex flex-col min-h-screen">
-      <div className="flex-1 p-4 space-y-12">
-        <div>
-          {toproutes.map(({ label, href, icon: Icon }) => (
-            <Link key={label} href={href} className="relative ">
-              <Button
-                variant="ghost"
-                className={`w-full flex justify-start rounded-lg cursor-pointer mb-3  text-muted-foreground transition-colors  hover:bg-blue-100 hover:text-blue-500 ${
-                  label == activeRoute && "bg-blue-100 text-blue-500"
-                }`}
-              >
-                <Icon />
-                {label}
-              </Button>
-            </Link>
-          ))}
-        </div>
+    <div className="h-screen flex flex-col overflow-y-auto">
+      <div className="flex-1">
+        {toproutes.map(({ label, href, icon: Icon }) => (
+          <Link key={label} href={href}>
+            <Button
+              variant="ghost"
+              className={`w-full flex justify-start gap-2 items-center rounded-lg cursor-pointer text-sm text-muted-foreground transition-colors  hover:bg-blue-100 hover:text-blue-500 ${
+                label == activeRoute && "bg-blue-100 text-blue-500 mb-2"
+              }`}
+              onClick={() => SetActiveRoute(label)}
+            >
+              <Icon />
+              {label}
+            </Button>
+          </Link>
+        ))}
 
-        <div className="space-y-4">
+        <div className="space-y-2 mt-12">
           <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
             Categories
           </h3>
 
           {categories.map(({ label, icon: Icon, href }) => (
-            <Link key={label} href={href} className="relative ">
+            <Link key={label} href={href}>
               <Button
                 variant="ghost"
-                className={`w-full flex justify-start rounded-lg cursor-pointer mb-3  text-muted-foreground transition-colors  hover:bg-blue-100 hover:text-blue-500 ${
+                className={`w-full flex justify-start gap-2 items-center rounded-lg cursor-pointer text-muted-foreground transition-colors  hover:bg-blue-100 hover:text-blue-500 ${
                   label == activeRoute && "bg-blue-100 text-blue-500"
                 }`}
+                onClick={() => SetActiveRoute(label)}
               >
                 <Icon />
                 {label}
@@ -132,14 +132,15 @@ export const SidebarRoutes = () => {
         </div>
       </div>
 
-      <div className="p-4">
+      <div>
         {bottomRoutes.map(({ label, icon: Icon, href }) => (
-          <Link key={label} href={href} className="relative">
+          <Link key={label} href={href}>
             <Button
               variant="ghost"
-              className={`w-full flex justify-start rounded-lg cursor-pointer mb-3 text-muted-foreground transition-colors  hover:bg-blue-100 hover:text-blue-500 ${
+              className={`w-full flex justify-start gap-2 items-center rounded-lg cursor-pointer text-muted-foreground transition-colors  hover:bg-blue-100 hover:text-blue-500 ${
                 label == activeRoute && "bg-blue-100 text-blue-500"
               }`}
+              onClick={() => SetActiveRoute(label)}
             >
               <Icon />
               {label}
